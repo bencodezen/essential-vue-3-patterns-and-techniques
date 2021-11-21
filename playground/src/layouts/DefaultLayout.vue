@@ -1,5 +1,30 @@
 <script>
-export default {}
+export default {
+  data: () => ({
+    navItems: [
+      {
+        title: '🏠 Home',
+        path: '/'
+      },
+      {
+        title: '🧾 Transactions',
+        path: '/transactions'
+      },
+      {
+        title: '🗃️ Categories',
+        path: '/categories'
+      },
+      {
+        title: '🏦 Accounts',
+        path: '/accounts'
+      },
+      {
+        title: '📘 Budget',
+        path: '/budget'
+      }
+    ]
+  })
+}
 </script>
 
 <template>
@@ -8,17 +33,12 @@ export default {}
       <h2>Navigation</h2>
       <nav>
         <ul class="main-nav">
-          <li class="main-nav-item">
-            <router-link to="/">🏠 Home</router-link>
-          </li>
-          <li class="main-nav-item">
-            <router-link to="/budget">📘 Budget</router-link>
-          </li>
-          <li class="main-nav-item">
-            <router-link to="/transactions">🧾 Transactions</router-link>
-          </li>
-          <li class="main-nav-item">
-            <router-link to="/accounts">🏦 Accounts</router-link>
+          <li
+            v-for="item in navItems"
+            :key="item.title + 'nav-item'"
+            class="main-nav-item"
+          >
+            <router-link :to="item.path">{{ item.title }}</router-link>
           </li>
         </ul>
       </nav>
