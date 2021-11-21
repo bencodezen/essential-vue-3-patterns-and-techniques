@@ -1,9 +1,17 @@
 <script>
-export default {}
+import DefaultLayout from '../layouts/DefaultLayout.vue'
+
+export default {
+  components: {
+    DefaultLayout
+  }
+}
 </script>
 
 <template>
-  <h1>Transactions</h1>
+  <DefaultLayout>
+    <h1>Transactions Page</h1>
+  </DefaultLayout>
 </template>
 
 <style></style>

@@ -1,9 +1,17 @@
 <script>
-export default {}
+import DefaultLayout from '../layouts/DefaultLayout.vue'
+
+export default {
+  components: {
+    DefaultLayout
+  }
+}
 </script>
 
 <template>
-  <h1>Budget</h1>
+  <DefaultLayout>
+    <h1>Budget Page</h1>
+  </DefaultLayout>
 </template>
 
 <style></style>
