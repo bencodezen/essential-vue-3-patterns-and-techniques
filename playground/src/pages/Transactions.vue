@@ -1,9 +1,31 @@
 <script>
+import { ref } from 'vue'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
 
 export default {
   components: {
     DefaultLayout
+  },
+  setup() {
+    const newTransaction = ref({
+      purchaseDate: '',
+      title: '',
+      cost: 0
+    })
+
+    const transactionList = ref([])
+
+    const addTransaction = () => {
+      transactionList.value.push({
+        ...newTransaction.value
+      })
+    }
+
+    return {
+      addTransaction,
+      newTransaction,
+      transactionList
+    }
   }
 }
 </script>
@@ -15,18 +37,29 @@ export default {
     <div class="transaction-grid">
       <section>
         <h2>New Transaction</h2>
+        <pre>{{ newTransaction }}</pre>
         <form @submit.prevent>
           <div class="base-input-wrapper">
             <label for="transaction-date" class="base-input-label">
               Purchase Date
             </label>
-            <input type="date" id="transaction-date" class="base-input" />
+            <input
+              type="date"
+              id="transaction-date"
+              class="base-input"
+              v-model="newTransaction.purchaseDate"
+            />
           </div>
           <div class="base-input-wrapper">
             <label for="transaction-title" class="base-input-label">
               Title
             </label>
-            <input type="text" id="transaction-title" class="base-input" />
+            <input
+              type="text"
+              id="transaction-title"
+              class="base-input"
+              v-model="newTransaction.title"
+            />
           </div>
           <div class="base-input-wrapper">
             <label for="transaction-estimate" class="base-input-label">
@@ -38,9 +71,12 @@ export default {
               placeholder="0.00"
               id="transaction-estimate"
               class="base-input"
+              v-model="newTransaction.cost"
             />
           </div>
-          <button class="base-button">Add New Transaction</button>
+          <button class="base-button" @click="addTransaction">
+            Add New Transaction
+          </button>
         </form>
       </section>
       <section>
@@ -70,16 +106,13 @@ export default {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td class="text-center">2021-11-01</td>
-              <td>Item #1</td>
-              <td class="text-center">$10.00</td>
-              <td class="text-center"><button>Edit</button></td>
-            </tr>
-            <tr>
-              <td class="text-center">2021-11-02</td>
-              <td>Item #2</td>
-              <td class="text-center">$20.00</td>
+            <tr
+              v-for="(transaction, index) in transactionList"
+              :key="`transaction-${index}`"
+            >
+              <td class="text-center">{{ transaction.purchaseDate }}</td>
+              <td>{{ transaction.title }}</td>
+              <td class="text-center">${{ transaction.cost }}</td>
               <td class="text-center"><button>Edit</button></td>
             </tr>
           </tbody>
