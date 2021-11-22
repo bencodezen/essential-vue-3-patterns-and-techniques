@@ -56,6 +56,19 @@ export default {
   min-height: 100vh;
 }
 
+.main-content {
+  padding: 1.5rem 3rem;
+}
+
+.main-content h1,
+.main-content h2 {
+  margin-bottom: 1rem;
+}
+
+.main-content hr {
+  margin-bottom: 1rem;
+}
+
 .main-nav {
   margin-top: 1rem;
   list-style: none;
@@ -87,7 +100,7 @@ export default {
 }
 
 .sidebar {
-  padding: 1rem;
+  padding: 1.5rem;
   background-color: var(--vue-blue);
   color: white;
 }
