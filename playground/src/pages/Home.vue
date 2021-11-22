@@ -10,7 +10,12 @@ export default {
 
 <template>
   <DefaultLayout>
-    <h1>Home Page</h1>
+    <h1>🏠 Home Page</h1>
+    <hr />
+    <p>
+      Welcome to the Budget Playground App! This is where you'll be doing your
+      exercises to get your hands on the concepts.
+    </p>
   </DefaultLayout>
 </template>
 

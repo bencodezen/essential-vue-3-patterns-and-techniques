@@ -30,7 +30,7 @@ export default {
 <template>
   <div class="default-grid">
     <aside class="sidebar">
-      <h2>Navigation</h2>
+      <h2>Budget App</h2>
       <nav>
         <ul class="main-nav">
           <li
@@ -54,6 +54,19 @@ export default {
   display: grid;
   grid-template-columns: 1fr 4fr;
   min-height: 100vh;
+}
+
+.main-content {
+  padding: 1.5rem 3rem;
+}
+
+.main-content h1,
+.main-content h2 {
+  margin-bottom: 1rem;
+}
+
+.main-content hr {
+  margin-bottom: 1rem;
 }
 
 .main-nav {
@@ -87,7 +100,7 @@ export default {
 }
 
 .sidebar {
-  padding: 1rem;
+  padding: 1.5rem;
   background-color: var(--vue-blue);
   color: white;
 }
