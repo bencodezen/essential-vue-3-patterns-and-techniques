@@ -1,6 +1,6 @@
 <script setup>
 import { computed, reactive, toRefs, onMounted } from 'vue'
-import useCounter from '../composables/useCounter'
+import useCounter from '../store/useCounter'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
 
 const { countState } = useCounter()

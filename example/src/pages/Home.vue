@@ -1,6 +1,6 @@
 <script>
 import { computed, ref } from 'vue'
-import useCounter from '../composables/useCounter'
+import useCounter from '../store/useCounter'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
 
 export default {
