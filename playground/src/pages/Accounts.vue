@@ -11,6 +11,7 @@ export default {
 <template>
   <DefaultLayout>
     <h1>Accounts Page</h1>
+    <button>Generate Sync Error</button>
   </DefaultLayout>
 </template>
 
