@@ -1,5 +1,5 @@
 <script>
-import { reactive, toRefs } from 'vue'
+import { computed, reactive, toRefs } from 'vue'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
 
 export default {
@@ -18,6 +18,24 @@ export default {
       { title: 'Bananas', estimate: 20, deadline: '2021-11-03 ' }
     ])
 
+    const totalEstimate = computed(() => {
+      let total = 0
+
+      taskList.forEach(task => {
+        total += task.estimate
+      })
+
+      return total
+    })
+
+    const totalTasks = computed(() => {
+      return taskList.length
+    })
+
+    const averageEstimate = computed(() => {
+      return totalEstimate.value / totalTasks.value
+    })
+
     const addTask = () => {
       taskList.push({
         ...newTask
@@ -27,7 +45,10 @@ export default {
     return {
       ...toRefs(newTask),
       addTask,
-      taskList
+      averageEstimate,
+      taskList,
+      totalEstimate,
+      totalTasks
     }
   }
 }
@@ -76,15 +97,15 @@ export default {
         <div class="metrics-grid">
           <div class="metric">
             <h3>Total Tasks</h3>
-            <p class="metric-number">2</p>
+            <p class="metric-number">{{ totalTasks }}</p>
           </div>
           <div class="metric">
             <h3>Total Estimate</h3>
-            <p class="metric-number">90</p>
+            <p class="metric-number">{{ totalEstimate }}</p>
           </div>
           <div class="metric">
-            <h3>Due This Month</h3>
-            <p class="metric-number">2</p>
+            <h3>Average Estimate</h3>
+            <p class="metric-number">{{ averageEstimate }}</p>
           </div>
         </div>
         <h2>Existing Tasks</h2>
