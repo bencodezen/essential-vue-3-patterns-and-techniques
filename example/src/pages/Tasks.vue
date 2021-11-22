@@ -1,5 +1,6 @@
 <script setup>
 import { computed, reactive, toRefs, onMounted } from 'vue'
+import TaskRow from '../components/TaskRow.vue'
 import useCounter from '../store/useCounter'
 import useProjectStore from '../store/useProjectStore'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
@@ -137,13 +138,11 @@ export default {
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(task, index) in taskList" :key="`task-${index}`">
-              <td>{{ task.title }}</td>
-              <td class="text-center">{{ task.estimate }}</td>
-              <td class="text-center">{{ task.project }}</td>
-              <td class="text-center">{{ task.deadline }}</td>
-              <td class="text-center"><button>Edit</button></td>
-            </tr>
+            <TaskRow
+              v-for="(task, index) in taskList"
+              :key="`task-${index}`"
+              :task="task"
+            />
           </tbody>
         </table>
       </section>
