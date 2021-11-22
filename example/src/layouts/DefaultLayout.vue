@@ -56,7 +56,7 @@ export default {
 <style>
 .default-grid {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 1.5fr 4fr;
   min-height: 100vh;
 }
 
