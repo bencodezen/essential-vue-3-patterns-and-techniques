@@ -3,6 +3,13 @@ import useProjectStore from '../store/useProjectStore'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
 
 const { projectStore } = useProjectStore()
+
+const addProject = () => {
+  projectStore.list.push({
+    title: 'Hotel',
+    deadline: '2021-02-02'
+  })
+}
 </script>
 
 <template>
@@ -21,7 +28,9 @@ const { projectStore } = useProjectStore()
             <label for="project-date" class="base-input-label">Deadline</label>
             <input type="date" id="project-date" class="base-input" />
           </div>
-          <button class="base-button">Add New Project</button>
+          <button class="base-button" @click="addProject">
+            Add New Project
+          </button>
         </form>
       </section>
       <section>
