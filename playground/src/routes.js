@@ -2,6 +2,7 @@ import AccountsPage from './pages/Accounts.vue'
 import BudgetPage from './pages/Budget.vue'
 import CategoriesPage from './pages/Categories.vue'
 import HomePage from './pages/Home.vue'
+import SettingsPage from './pages/Settings.vue'
 import TransactionsPage from './pages/Transactions.vue'
 
 const pageRoutes = [
@@ -20,6 +21,10 @@ const pageRoutes = [
   {
     path: '/categories',
     component: CategoriesPage
+  },
+  {
+    path: '/settings',
+    component: SettingsPage
   },
   {
     path: '/transactions',

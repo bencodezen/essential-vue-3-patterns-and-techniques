@@ -21,6 +21,10 @@ export default {
       {
         title: '📊 Dashboard',
         path: '/dashboard'
+      },
+      {
+        title: '⚙️ Settings',
+        path: '/settings'
       }
     ]
   })

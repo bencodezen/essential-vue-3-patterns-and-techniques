@@ -21,6 +21,10 @@ export default {
       {
         title: '📘 Budget',
         path: '/budget'
+      },
+      {
+        title: '⚙️ Settings',
+        pat: '/settings'
       }
     ]
   })
