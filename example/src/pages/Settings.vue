@@ -9,7 +9,13 @@ const { baseFontSize, themeColor } = useSettings()
 <template>
   <DefaultLayout>
     <h1>⚙️ Settings Page</h1>
-    <Counter message="Hello Vue Toronto 2021!" />
+    <article>
+      <Counter
+        class="custom-counter-class"
+        data-test="emza"
+        message="Hello Vue Toronto 2021!"
+      />
+    </article>
     <hr />
     <form @submit.prevent>
       <div class="base-input-wrapper">
