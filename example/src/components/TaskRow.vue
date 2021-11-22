@@ -9,6 +9,13 @@ defineProps({
 
 <script>
 export default {
+  emits: {
+    'edit-task': payload => {
+      if (payload === 'hello') {
+        return true
+      }
+    }
+  },
   methods: {
     editTask() {
       this.$emit('edit-task', this.task.title)
