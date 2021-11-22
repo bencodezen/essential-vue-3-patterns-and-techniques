@@ -1,5 +1,5 @@
 <script>
-import { ref } from 'vue'
+import { reactive } from 'vue'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
 
 export default {
@@ -7,17 +7,17 @@ export default {
     DefaultLayout
   },
   setup() {
-    const newTransaction = ref({
+    const newTransaction = reactive({
       purchaseDate: '',
       title: '',
       cost: 0
     })
 
-    const transactionList = ref([])
+    const transactionList = reactive([])
 
     const addTransaction = () => {
-      transactionList.value.push({
-        ...newTransaction.value
+      transactionList.push({
+        ...newTransaction
       })
     }
 
