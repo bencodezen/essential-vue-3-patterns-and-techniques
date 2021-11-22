@@ -14,13 +14,13 @@ export default {
     <hr />
     <div class="areas-grid">
       <section>
-        <h2>New Task</h2>
+        <h2>New Area</h2>
         <form @submit.prevent>
           <div class="base-input-wrapper">
             <label for="area-title" class="base-input-label">Title</label>
             <input type="text" id="area-title" class="base-input" />
           </div>
-          <button class="base-button">Add New Task</button>
+          <button class="base-button">Add New Area</button>
         </form>
       </section>
       <section>
