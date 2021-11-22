@@ -1,5 +1,5 @@
 <script>
-import { reactive, toRefs } from 'vue'
+import { computed, reactive, toRefs } from 'vue'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
 
 export default {
@@ -15,6 +15,16 @@ export default {
 
     const transactionList = reactive([])
 
+    const totalCost = computed(() => {
+      let total = 0
+
+      transactionList.forEach(transaction => {
+        total += transaction.cost
+      })
+
+      return total
+    })
+
     const addTransaction = () => {
       transactionList.push({
         ...newTransaction
@@ -24,6 +34,7 @@ export default {
     return {
       ...toRefs(newTransaction),
       addTransaction,
+      totalCost,
       transactionList
     }
   }
@@ -87,7 +98,7 @@ export default {
           </div>
           <div class="metric">
             <h3>Total Cost</h3>
-            <p class="metric-number">$30</p>
+            <p class="metric-number">${{ totalCost }}</p>
           </div>
           <div class="metric">
             <h3>Average Cost</h3>
