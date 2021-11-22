@@ -53,6 +53,11 @@ export default {
     doubleEstimate() {
       return this.totalEstimate * 2
     }
+  },
+  methods: {
+    taskEdit(payload) {
+      alert(payload)
+    }
   }
 }
 </script>
@@ -142,6 +147,7 @@ export default {
               v-for="(task, index) in taskList"
               :key="`task-${index}`"
               :task="task"
+              @edit-task="taskEdit"
             />
           </tbody>
         </table>
