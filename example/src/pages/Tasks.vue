@@ -1,5 +1,5 @@
 <script>
-import { reactive } from 'vue'
+import { reactive, toRefs } from 'vue'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
 
 export default {
@@ -25,8 +25,8 @@ export default {
     }
 
     return {
+      ...toRefs(newTask),
       addTask,
-      newTask,
       taskList
     }
   }
@@ -36,7 +36,6 @@ export default {
 <template>
   <DefaultLayout>
     <h1>☑️ Tasks Page</h1>
-    <pre>{{ newTask }}</pre>
     <hr />
     <div class="task-grid">
       <section>
@@ -45,7 +44,7 @@ export default {
           <div class="base-input-wrapper">
             <label for="task-title" class="base-input-label">Title</label>
             <input
-              v-model="newTask.title"
+              v-model="title"
               type="text"
               id="task-title"
               class="base-input"
@@ -54,7 +53,7 @@ export default {
           <div class="base-input-wrapper">
             <label for="task-estimate" class="base-input-label">Estimate</label>
             <input
-              v-model="newTask.estimate"
+              v-model="estimate"
               type="number"
               id="task-estimate"
               class="base-input"
@@ -63,7 +62,7 @@ export default {
           <div class="base-input-wrapper">
             <label for="task-date" class="base-input-label">Deadline</label>
             <input
-              v-model="newTask.deadline"
+              v-model="deadline"
               type="date"
               id="task-date"
               class="base-input"
