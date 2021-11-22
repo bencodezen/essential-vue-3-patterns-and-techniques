@@ -1,6 +1,7 @@
 <script setup>
 import useSettings from '../store/useSettings'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
+import Counter from '../components/Counter.vue'
 
 const { baseFontSize, themeColor } = useSettings()
 </script>
@@ -8,6 +9,7 @@ const { baseFontSize, themeColor } = useSettings()
 <template>
   <DefaultLayout>
     <h1>⚙️ Settings Page</h1>
+    <Counter message="Hello Vue Toronto 2021!" />
     <hr />
     <form @submit.prevent>
       <div class="base-input-wrapper">
