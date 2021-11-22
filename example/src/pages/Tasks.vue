@@ -1,9 +1,35 @@
 <script>
+import { ref } from 'vue'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
 
 export default {
   components: {
     DefaultLayout
+  },
+  setup() {
+    const userTitle = ref('Test')
+    const userEstimate = ref(0)
+    const userDeadline = ref('2021-11-22')
+    const taskList = ref([
+      { title: 'Apple', estimate: 10, deadline: '2021-11-01 ' },
+      { title: 'Bananas', estimate: 20, deadline: '2021-11-03 ' }
+    ])
+
+    const addTask = () => {
+      taskList.value.push({
+        title: userTitle.value,
+        estimate: userEstimate.value,
+        deadline: userDeadline.value
+      })
+    }
+
+    return {
+      addTask,
+      taskList,
+      userTitle,
+      userEstimate,
+      userDeadline
+    }
   }
 }
 </script>
@@ -18,17 +44,32 @@ export default {
         <form @submit.prevent>
           <div class="base-input-wrapper">
             <label for="task-title" class="base-input-label">Title</label>
-            <input type="text" id="task-title" class="base-input" />
+            <input
+              v-model="userTitle"
+              type="text"
+              id="task-title"
+              class="base-input"
+            />
           </div>
           <div class="base-input-wrapper">
             <label for="task-estimate" class="base-input-label">Estimate</label>
-            <input type="number" id="task-estimate" class="base-input" />
+            <input
+              v-model="userEstimate"
+              type="number"
+              id="task-estimate"
+              class="base-input"
+            />
           </div>
           <div class="base-input-wrapper">
             <label for="task-date" class="base-input-label">Deadline</label>
-            <input type="date" id="task-date" class="base-input" />
+            <input
+              v-model="userDeadline"
+              type="date"
+              id="task-date"
+              class="base-input"
+            />
           </div>
-          <button class="base-button">Add New Task</button>
+          <button @click="addTask" class="base-button">Add New Task</button>
         </form>
       </section>
       <section>
@@ -58,16 +99,10 @@ export default {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Task 1</td>
-              <td class="text-center">30</td>
-              <td class="text-center">2021-11-01</td>
-              <td class="text-center"><button>Edit</button></td>
-            </tr>
-            <tr>
-              <td>Task 2</td>
-              <td class="text-center">60</td>
-              <td class="text-center">2021-11-02</td>
+            <tr v-for="(task, index) in taskList" :key="`task-${index}`">
+              <td>{{ task.title }}</td>
+              <td class="text-center">{{ task.estimate }}</td>
+              <td class="text-center">{{ task.deadline }}</td>
               <td class="text-center"><button>Edit</button></td>
             </tr>
           </tbody>
