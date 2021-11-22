@@ -1,10 +1,12 @@
-<script>
+<script setup>
+import { ref } from 'vue'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
+import TheModal from '../components/TheModal.vue'
 
-export default {
-  components: {
-    DefaultLayout
-  }
+const syncError = ref(false)
+
+const syncTodoist = () => {
+  syncError.value = true
 }
 </script>
 
@@ -12,7 +14,11 @@ export default {
   <DefaultLayout>
     <h1>🌐 Areas Page</h1>
     <hr />
+    <teleport to="#modal">
+      <TheModal v-if="syncError" />
+    </teleport>
     <div class="areas-grid">
+      <button @click="syncTodoist">Sync Todoist</button>
       <section>
         <h2>New Area</h2>
         <form @submit.prevent>
