@@ -1,5 +1,5 @@
 <script>
-import { ref } from 'vue'
+import { reactive } from 'vue'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
 
 export default {
@@ -7,28 +7,27 @@ export default {
     DefaultLayout
   },
   setup() {
-    const userTitle = ref('Test')
-    const userEstimate = ref(0)
-    const userDeadline = ref('2021-11-22')
-    const taskList = ref([
+    const newTask = reactive({
+      title: 'test',
+      estimate: 10,
+      deadline: '2021-11-22'
+    })
+
+    const taskList = reactive([
       { title: 'Apple', estimate: 10, deadline: '2021-11-01 ' },
       { title: 'Bananas', estimate: 20, deadline: '2021-11-03 ' }
     ])
 
     const addTask = () => {
-      taskList.value.push({
-        title: userTitle.value,
-        estimate: userEstimate.value,
-        deadline: userDeadline.value
+      taskList.push({
+        ...newTask
       })
     }
 
     return {
       addTask,
-      taskList,
-      userTitle,
-      userEstimate,
-      userDeadline
+      newTask,
+      taskList
     }
   }
 }
@@ -37,6 +36,7 @@ export default {
 <template>
   <DefaultLayout>
     <h1>☑️ Tasks Page</h1>
+    <pre>{{ newTask }}</pre>
     <hr />
     <div class="task-grid">
       <section>
@@ -45,7 +45,7 @@ export default {
           <div class="base-input-wrapper">
             <label for="task-title" class="base-input-label">Title</label>
             <input
-              v-model="userTitle"
+              v-model="newTask.title"
               type="text"
               id="task-title"
               class="base-input"
@@ -54,7 +54,7 @@ export default {
           <div class="base-input-wrapper">
             <label for="task-estimate" class="base-input-label">Estimate</label>
             <input
-              v-model="userEstimate"
+              v-model="newTask.estimate"
               type="number"
               id="task-estimate"
               class="base-input"
@@ -63,7 +63,7 @@ export default {
           <div class="base-input-wrapper">
             <label for="task-date" class="base-input-label">Deadline</label>
             <input
-              v-model="userDeadline"
+              v-model="newTask.deadline"
               type="date"
               id="task-date"
               class="base-input"
