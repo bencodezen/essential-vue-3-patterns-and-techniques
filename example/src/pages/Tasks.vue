@@ -1,6 +1,9 @@
 <script setup>
-import { computed, reactive, toRefs } from 'vue'
+import { computed, reactive, toRefs, onMounted } from 'vue'
+import useCounter from '../composables/useCounter'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
+
+const { countState } = useCounter()
 
 const newTask = reactive({
   title: 'test',
@@ -53,6 +56,7 @@ export default {
 <template>
   <DefaultLayout>
     <h1>☑️ Tasks Page</h1>
+    <pre>{{ countState }}</pre>
     <p>Double estimate: {{ doubleEstimate }}</p>
     <hr />
     <div class="task-grid">

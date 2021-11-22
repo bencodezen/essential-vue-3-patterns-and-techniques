@@ -1,5 +1,6 @@
 <script>
-import { computed, reactive, ref } from 'vue'
+import { computed, ref } from 'vue'
+import useCounter from '../composables/useCounter'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
 
 export default {
@@ -13,6 +14,8 @@ export default {
       multiplier: 3
     })
 
+    const { countState } = useCounter()
+
     // Computed with Ref
     const multiplyCount = computed(() => {
       return newCount.value.count * newCount.value.multiplier
@@ -24,26 +27,26 @@ export default {
     })
 
     // Computed Inside of Reactive
-    const countState = reactive({
-      count: 800,
-      multiplier: 4,
-      doubleCount: computed(() => {
-        return countState.count * 2
-      }),
-      multiplyCount: computed(() => {
-        return countState.count * countState.doubleCount
-      })
-    })
+    // const countState = reactive({
+    //   count: 800,
+    //   multiplier: 4,
+    //   doubleCount: computed(() => {
+    //     return countState.count * 2
+    //   }),
+    //   multiplyCount: computed(() => {
+    //     return countState.count * countState.doubleCount
+    //   })
+    // })
 
     // Computed with Reactive
-    const doubleCountState = computed(() => {
-      return countState.count * countState.multiplier
-    })
+    // const doubleCountState = computed(() => {
+    //   return countState.count * countState.multiplier
+    // })
 
     // Computed with Computed Reactive
-    const halfCountState = computed(() => {
-      return doubleCountState.value / 2
-    })
+    // const halfCountState = computed(() => {
+    //   return doubleCountState.value / 2
+    // })
 
     const incrementNewCount = () => {
       countState.count++
@@ -51,8 +54,8 @@ export default {
 
     return {
       countState,
-      doubleCountState,
-      halfCountState,
+      // doubleCountState,
+      // halfCountState,
       halfCount,
       multiplyCount,
       newCount,
