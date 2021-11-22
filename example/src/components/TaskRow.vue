@@ -1,26 +1,17 @@
 <script setup>
-defineProps({
+const props = defineProps({
   task: {
     type: Object,
     required: true
   }
 })
-</script>
 
-<script>
-export default {
-  emits: {
-    'edit-task': payload => {
-      if (payload === 'hello') {
-        return true
-      }
-    }
-  },
-  methods: {
-    editTask() {
-      this.$emit('edit-task', this.task.title)
-    }
-  }
+const emits = defineEmits({
+  'edit-task': null
+})
+
+const editTask = () => {
+  emits('edit-task', props.task.title)
 }
 </script>
 
