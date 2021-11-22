@@ -74,7 +74,6 @@ export default {
         </table>
       </section>
     </div>
-    <pre>{{ newTask }}</pre>
   </DefaultLayout>
 </template>
 
