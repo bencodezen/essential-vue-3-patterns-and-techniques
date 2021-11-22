@@ -1,54 +1,48 @@
-<script>
-import { computed, reactive, toRefs } from 'vue'
+<script setup>
+import { computed, reactive } from 'vue'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
 
+const newTask = reactive({
+  title: 'test',
+  estimate: 10,
+  deadline: '2021-11-22'
+})
+
+const taskList = reactive([
+  { title: 'Apple', estimate: 10, deadline: '2021-11-01 ' },
+  { title: 'Bananas', estimate: 20, deadline: '2021-11-03 ' }
+])
+
+const totalEstimate = computed(() => {
+  let total = 0
+
+  taskList.forEach(task => {
+    total += task.estimate
+  })
+
+  return total
+})
+
+const totalTasks = computed(() => {
+  return taskList.length
+})
+
+const averageEstimate = computed(() => {
+  return totalEstimate.value / totalTasks.value
+})
+
+const addTask = () => {
+  taskList.push({
+    ...newTask
+  })
+}
+</script>
+
+<script>
 export default {
-  components: {
-    DefaultLayout
-  },
-  setup() {
-    const newTask = reactive({
-      title: 'test',
-      estimate: 10,
-      deadline: '2021-11-22'
-    })
-
-    const taskList = reactive([
-      { title: 'Apple', estimate: 10, deadline: '2021-11-01 ' },
-      { title: 'Bananas', estimate: 20, deadline: '2021-11-03 ' }
-    ])
-
-    const totalEstimate = computed(() => {
-      let total = 0
-
-      taskList.forEach(task => {
-        total += task.estimate
-      })
-
-      return total
-    })
-
-    const totalTasks = computed(() => {
-      return taskList.length
-    })
-
-    const averageEstimate = computed(() => {
-      return totalEstimate.value / totalTasks.value
-    })
-
-    const addTask = () => {
-      taskList.push({
-        ...newTask
-      })
-    }
-
-    return {
-      ...toRefs(newTask),
-      addTask,
-      averageEstimate,
-      taskList,
-      totalEstimate,
-      totalTasks
+  computed: {
+    doubleEstimate() {
+      return this.totalEstimate * 2
     }
   }
 }
@@ -57,6 +51,7 @@ export default {
 <template>
   <DefaultLayout>
     <h1>☑️ Tasks Page</h1>
+    <p>Double estimate: {{ doubleEstimate }}</p>
     <hr />
     <div class="task-grid">
       <section>
