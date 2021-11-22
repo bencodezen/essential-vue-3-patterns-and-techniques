@@ -1,11 +1,8 @@
-<script>
+<script setup>
+import useSettings from '../store/useSettings'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
 
-export default {
-  components: {
-    DefaultLayout
-  }
-}
+const { baseFontSize, themeColor } = useSettings()
 </script>
 
 <template>
@@ -15,11 +12,21 @@ export default {
     <form @submit.prevent>
       <div class="base-input-wrapper">
         <label for="font-size" class="base-input-label">Font Size</label>
-        <input type="text" id="font-size" class="base-input" />
+        <input
+          type="number"
+          id="font-size"
+          class="base-input"
+          v-model="baseFontSize"
+        />
       </div>
       <div class="base-input-wrapper">
         <label for="theme-color" class="base-input-label">Theme Color</label>
-        <input type="text" id="theme-color" class="base-input" />
+        <input
+          type="color"
+          id="theme-color"
+          class="base-input"
+          v-model="themeColor"
+        />
       </div>
     </form>
   </DefaultLayout>

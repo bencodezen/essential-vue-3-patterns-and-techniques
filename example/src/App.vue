@@ -1,3 +1,9 @@
+<script setup>
+import useSettings from './store/useSettings'
+
+const { baseFontSizePx } = useSettings()
+</script>
+
 <template>
   <router-view />
 </template>
@@ -16,5 +22,6 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
+  font-size: v-bind(baseFontSizePx);
 }
 </style>

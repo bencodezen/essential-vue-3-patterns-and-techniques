@@ -1,5 +1,14 @@
 <script>
+import useSettings from '../store/useSettings'
+
 export default {
+  setup() {
+    const { themeColor } = useSettings()
+
+    return {
+      themeColor
+    }
+  },
   data: () => ({
     navItems: [
       {
@@ -87,7 +96,7 @@ export default {
   display: block;
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  background-color: var(--vue-blue);
+  background-color: v-bind(themeColor);
   font-weight: 500;
   color: white;
   text-decoration: none;
@@ -105,7 +114,7 @@ export default {
 
 .sidebar {
   padding: 1.5rem;
-  background-color: var(--vue-blue);
+  background-color: v-bind(themeColor);
   color: white;
 }
 </style>
