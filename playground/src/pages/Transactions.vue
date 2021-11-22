@@ -1,5 +1,5 @@
 <script>
-import { reactive } from 'vue'
+import { reactive, toRefs } from 'vue'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
 
 export default {
@@ -22,8 +22,8 @@ export default {
     }
 
     return {
+      ...toRefs(newTransaction),
       addTransaction,
-      newTransaction,
       transactionList
     }
   }
@@ -37,7 +37,6 @@ export default {
     <div class="transaction-grid">
       <section>
         <h2>New Transaction</h2>
-        <pre>{{ newTransaction }}</pre>
         <form @submit.prevent>
           <div class="base-input-wrapper">
             <label for="transaction-date" class="base-input-label">
@@ -47,7 +46,7 @@ export default {
               type="date"
               id="transaction-date"
               class="base-input"
-              v-model="newTransaction.purchaseDate"
+              v-model="purchaseDate"
             />
           </div>
           <div class="base-input-wrapper">
@@ -58,7 +57,7 @@ export default {
               type="text"
               id="transaction-title"
               class="base-input"
-              v-model="newTransaction.title"
+              v-model="title"
             />
           </div>
           <div class="base-input-wrapper">
@@ -71,7 +70,7 @@ export default {
               placeholder="0.00"
               id="transaction-estimate"
               class="base-input"
-              v-model="newTransaction.cost"
+              v-model="cost"
             />
           </div>
           <button class="base-button" @click="addTransaction">
