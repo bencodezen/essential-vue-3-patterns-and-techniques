@@ -1,17 +1,20 @@
 <script setup>
 import { computed, reactive, toRefs, onMounted } from 'vue'
 import useCounter from '../store/useCounter'
+import useProjectStore from '../store/useProjectStore'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
 
 const { countState } = useCounter()
+const { projectStore } = useProjectStore()
 
 const newTask = reactive({
   title: 'test',
   estimate: 10,
-  deadline: '2021-11-22'
+  deadline: '2021-11-22',
+  project: ''
 })
 
-const { title, estimate, deadline } = toRefs(newTask)
+const { title, estimate, deadline, project } = toRefs(newTask)
 
 const taskList = reactive([
   { title: 'Apple', estimate: 10, deadline: '2021-11-01 ' },
@@ -82,6 +85,19 @@ export default {
             />
           </div>
           <div class="base-input-wrapper">
+            <label for="task-project" class="base-input-label">Project</label>
+            <select name="task-project" id="task-project" v-model="project">
+              <option value="">Select a project</option>
+              <option
+                v-for="(project, index) in projectStore.list"
+                :key="`project-${index}`"
+                :value="project.title"
+              >
+                {{ project.title }}
+              </option>
+            </select>
+          </div>
+          <div class="base-input-wrapper">
             <label for="task-date" class="base-input-label">Deadline</label>
             <input
               v-model="deadline"
@@ -115,6 +131,7 @@ export default {
             <tr>
               <th>Title</th>
               <th>Estimate</th>
+              <th>Project</th>
               <th>Deadline</th>
               <th>Actions</th>
             </tr>
@@ -123,6 +140,7 @@ export default {
             <tr v-for="(task, index) in taskList" :key="`task-${index}`">
               <td>{{ task.title }}</td>
               <td class="text-center">{{ task.estimate }}</td>
+              <td class="text-center">{{ task.project }}</td>
               <td class="text-center">{{ task.deadline }}</td>
               <td class="text-center"><button>Edit</button></td>
             </tr>
@@ -186,7 +204,7 @@ export default {
 
 .task-table tr {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
 }
 
 .text-center {

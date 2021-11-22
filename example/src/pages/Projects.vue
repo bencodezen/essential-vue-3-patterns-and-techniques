@@ -1,11 +1,8 @@
-<script>
+<script setup>
+import useProjectStore from '../store/useProjectStore'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
 
-export default {
-  components: {
-    DefaultLayout
-  }
-}
+const { projectStore } = useProjectStore()
 </script>
 
 <template>
@@ -38,14 +35,12 @@ export default {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Project 1</td>
-              <td class="text-center">2021-11-01</td>
-              <td class="text-center"><button>Edit</button></td>
-            </tr>
-            <tr>
-              <td>Project 2</td>
-              <td class="text-center">2021-11-02</td>
+            <tr
+              v-for="(project, index) in projectStore.list"
+              :key="`project-${index}`"
+            >
+              <td>{{ project.title }}</td>
+              <td class="text-center">{{ project.deadline }}</td>
               <td class="text-center"><button>Edit</button></td>
             </tr>
           </tbody>
