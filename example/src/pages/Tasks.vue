@@ -1,5 +1,5 @@
 <script setup>
-import { computed, reactive } from 'vue'
+import { computed, reactive, toRefs } from 'vue'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
 
 const newTask = reactive({
@@ -7,6 +7,8 @@ const newTask = reactive({
   estimate: 10,
   deadline: '2021-11-22'
 })
+
+const { title, estimate, deadline } = toRefs(newTask)
 
 const taskList = reactive([
   { title: 'Apple', estimate: 10, deadline: '2021-11-01 ' },
