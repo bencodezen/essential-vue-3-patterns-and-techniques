@@ -1,18 +1,27 @@
-<script setup>
+<script setup lang="ts">
 import { computed, reactive, toRefs, onMounted } from 'vue'
 import TaskRow from '../components/TaskRow.vue'
 import useCounter from '../store/useCounter'
 import useProjectStore from '../store/useProjectStore'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
 
+type Project = 'Mall' | 'Grocery'
+
+interface Task {
+  title: string
+  estimate: number
+  deadline: string
+  project: Project
+}
+
 const { countState } = useCounter()
 const { projectStore } = useProjectStore()
 
-const newTask = reactive({
+const newTask = reactive<Task>({
   title: 'test',
   estimate: 10,
   deadline: '2021-11-22',
-  project: ''
+  project: 'Grocery'
 })
 
 const { title, estimate, deadline, project } = toRefs(newTask)

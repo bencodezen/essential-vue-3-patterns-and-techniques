@@ -1,15 +1,18 @@
-<script>
-import { computed, ref } from 'vue'
+<script lang="ts">
+import { defineComponent, computed, ref } from 'vue'
 import useCounter from '../store/useCounter'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
 
-export default {
+export default defineComponent({
   components: {
     DefaultLayout
   },
   setup() {
     const PRIVATE_COUNT = 100
-    const newCount = ref({
+    const newCount = ref<{
+      count: number
+      multiplier: number
+    }>({
       count: PRIVATE_COUNT + 10,
       multiplier: 3
     })
@@ -64,7 +67,7 @@ export default {
   },
   data() {
     return {
-      currentCount: 0
+      currentCount: 0 as Number
     }
   },
   methods: {
@@ -72,7 +75,7 @@ export default {
       this.newCount++
     }
   }
-}
+})
 </script>
 
 <template>

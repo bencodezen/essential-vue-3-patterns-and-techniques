@@ -15,7 +15,17 @@ const upperMessage = props.message.toUpperCase()
 
 <script>
 export default {
-  inheritAttrs: false
+  inheritAttrs: false,
+  props: {
+    message: {
+      type: String,
+      required: true
+    },
+    initialCount: {
+      type: [Number, String],
+      default: 10
+    }
+  }
 }
 </script>
 
