@@ -24,7 +24,7 @@ export default {
       },
       {
         title: '⚙️ Settings',
-        pat: '/settings'
+        path: '/settings'
       }
     ]
   })
