@@ -8,11 +8,13 @@ export default {
   },
   setup() {
     const PRIVATE_COUNT = 100
-    const newCount = ref(10 + PRIVATE_COUNT)
+    const newCount = ref({
+      count: PRIVATE_COUNT + 10,
+      multiplier: 3
+    })
 
     const incrementNewCount = () => {
-      console.log(newCount)
-      newCount.value++
+      newCount.value.count++
     }
 
     return {
@@ -26,8 +28,8 @@ export default {
     }
   },
   computed: {
-    doubleCount() {
-      return this.newCount * 2
+    multiplyCount() {
+      return this.newCount.count * this.newCount.multiplier
     }
   },
   methods: {
@@ -43,8 +45,8 @@ export default {
     <h1>🏠 Home Page</h1>
     <h2>Counter</h2>
     <p>{{ currentCount }}</p>
-    <p>New: {{ newCount }}</p>
-    <p>Double: {{ doubleCount }}</p>
+    <p>New: {{ newCount.count }}</p>
+    <p>Double: {{ multiplyCount }}</p>
     <button @click="incrementNewCount">+</button>
     <hr />
     <p>
